@@ -17,7 +17,6 @@ export default defineNuxtConfig({
         "@nuxt/image",
         "@nuxt/test-utils",
     ],
-    // fonts: {},
 
     app: {
         head: {
