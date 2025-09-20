@@ -12,8 +12,8 @@ const links: { href: string; label: string }[] = [
 </script>
 
 <template>
-    <header class="flex gap-2 flex-col p-2">
-        <div class="flex items-center justify-between">
+    <header class="flex flex-col">
+        <div class="flex items-center justify-between p-2">
             <NuxtLink
                 to="/"
                 class="inline-flex items-center gap-1"
@@ -34,14 +34,14 @@ const links: { href: string; label: string }[] = [
             </button>
         </div>
 
-        <hr class="border-zinc-400" />
+        <hr class="border-border" />
 
-        <nav class="">
+        <nav class="p-2">
             <ul class="flex justify-evenly font-caveat">
                 <li
                     v-for="link in links"
                     :key="link.href"
-                    class="text-2xl font-medium"
+                    class="text-2xl hover:scale-110 transition-transform font-medium"
                 >
                     <NuxtLink :to="'#' + link.href">{{ link.label }}</NuxtLink>
                 </li>

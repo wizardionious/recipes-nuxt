@@ -5,6 +5,7 @@
     --accent-background: oklch(96% 0 0);
     --muted-background: oklch(94% 0 0);
     --foreground: oklch(3% 0 0);
+    --border: oklch(85% 0 0);
 }
 
 .dark {
@@ -16,6 +17,7 @@
     --color-accent-background: var(--accent-background);
     --color-muted-background: var(--muted-background);
     --color-foreground: var(--foreground);
+    --color-border: var(--border);
     --font-amita: "Amita", handwriting;
     --font-bad-script: "Bad Script", handwriting;
     --font-caveat: "Caveat", handwriting;
