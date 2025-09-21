@@ -70,6 +70,13 @@ export const useDishesStore = defineStore("dishes", () => {
                     amount: "за смаком",
                 },
             ],
+            steps: [
+                {
+                    durationSec: 10 * 60,
+                    description:
+                        "Подготовьте продукты: снимите кожу с бёдер, обсушите, нарежьте лук полукольцами, перец соломкой, помидоры кубиком.",
+                },
+            ],
         },
     ]);
 
