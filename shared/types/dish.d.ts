@@ -15,6 +15,11 @@ export type DishIngridient = {
       }
 );
 
+export type DishStep = {
+    durationSec: number;
+    description: string;
+};
+
 export type AppDish = {
     id: string;
     image: {
@@ -26,4 +31,5 @@ export type AppDish = {
     description: string;
     macronutrients: Macronutrient[];
     ingridients: DishIngridient[];
+    steps: DishStep[];
 };
