@@ -33,17 +33,20 @@ const dish = dishesStore.getByLink(route.params.id)!;
 
             <div class="py-2">
                 <ul class="">
-                    <li class="flex items-center gap-4">
+                    <li
+                        v-for="(step, index) in dish.steps"
+                        :key="index"
+                        class="flex items-center gap-4"
+                    >
                         <input
-                            :id="1 + 'c'"
+                            :id="'step-' + index + 1"
                             type="checkbox"
                             name="checkbox"
                             class=""
                         />
-                        <label :for="1 + 'c'">
-                            Подготовьте продукты: снимите кожу с бёдер,
-                            обсушите, нарежьте лук полукольцами, перец соломкой,
-                            помидоры кубиком. (10 мин)
+                        <label :for="'step-' + index + 1">
+                            {{ step.description }} ({{ step.durationSec / 60 }}
+                            хв)
                         </label>
                     </li>
                 </ul>
