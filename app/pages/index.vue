@@ -7,11 +7,74 @@ useHead({
 
 const dishes = reactive<AppDish[]>([
     {
+        id: crypto.randomUUID(),
         image: {
             alt: "Чахохбілі",
             src: "/images/chakhokhbili.png",
         },
         title: "Чахохбілі",
+        description:
+            "Классическое грузинское блюдо: тушёная курица с томатами, луком и специями. Высокий белок для мышц, тёплое согревающее блюдо для осени.",
+        macronutrients: [
+            {
+                displayName: "Білки",
+                amount: 48,
+            },
+            {
+                displayName: "Жири",
+                amount: 20,
+            },
+            {
+                displayName: "Вуглеводи",
+                amount: 22,
+            },
+        ],
+        ingridients: [
+            {
+                title: "Курячі стегна без шкіри",
+                amount: 600,
+                units: "г.",
+            },
+            {
+                title: "Цибуля ріпчаста",
+                amount: 300,
+                units: "г.",
+            },
+            {
+                title: "Помідори стиглі (або томати у власному соку)",
+                amount: 500,
+                units: "г.",
+            },
+            {
+                title: "Перець солодкий",
+                amount: 200,
+                units: "г.",
+            },
+            {
+                title: "Часник",
+                amount: 4,
+                units: "зубчики",
+            },
+            {
+                title: "Кінза свіжа",
+                amount: 20,
+                units: "г.",
+            },
+            {
+                title: "Петрушка свіжа",
+                amount: 20,
+                units: "г.",
+            },
+            {
+                title: "Олія оливкова",
+                amount: 200,
+                units: "г.",
+            },
+            {
+                title: "Сіль, перець, хмелі-сунелі",
+                amount: "за смаком",
+            },
+        ],
     },
 ]);
 </script>
@@ -25,26 +88,11 @@ const dishes = reactive<AppDish[]>([
         </div>
 
         <div class="grid flex-1 grid-cols-1 gap-4 p-4">
-            <section
+            <DishCard
                 v-for="dish in dishes"
-                :key="dish.title"
-                class="bg-card rounded-lg px-4 shadow-xs"
-            >
-                <div class="flex items-center justify-center p-3">
-                    <h2 class="font-caveat text-4xl">
-                        {{ dish.title }}
-                    </h2>
-                </div>
-
-                <figure>
-                    <img
-                        :src="dish.image.src"
-                        :alt="dish.image.alt"
-                        class="w-full rounded-lg object-contain"
-                    />
-                    <figcaption class="sr-only">Чахохбілі</figcaption>
-                </figure>
-            </section>
+                :key="dish.id"
+                :dish
+            />
         </div>
     </main>
 </template>
