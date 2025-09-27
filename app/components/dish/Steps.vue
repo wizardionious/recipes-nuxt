@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import type { DishStepWithCompleted } from "~~/shared/types/dish";
-
 const props = withDefaults(
     defineProps<{
         steps?: DishStepWithCompleted[];
@@ -8,12 +6,6 @@ const props = withDefaults(
     {
         steps: () => [],
     },
-);
-
-const total = computed(() => props.steps.length);
-const done = computed(() => props.steps.filter((step) => !!s.completed).length);
-const percent = computed(() =>
-    total.value ? Math.round((done.value / total.value) * 100) : 0,
 );
 </script>
 
@@ -26,7 +18,6 @@ const percent = computed(() =>
             Шаги приготовления
         </h2>
 
-        <!--If steps absent-->
         <div
             v-if="props.steps.length === 0"
             class="text-sm opacity-70"
