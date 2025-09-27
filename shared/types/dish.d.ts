@@ -20,6 +20,11 @@ export type DishStep = {
     description: string;
 };
 
+export type DishStepWithCompleted = DishStep & {
+    completed?: boolean;
+    id?: string;
+};
+
 export type AppDish = {
     id: string;
     image: {
