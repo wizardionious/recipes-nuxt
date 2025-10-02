@@ -1,70 +1,58 @@
 <script setup lang="ts">
 const props = defineProps<{
-    dish: AppDish;
+  dish: AppDish;
 }>();
 
-const createLink = (dish: AppDish) => {
-    const escapedTitle = dish.title.replaceAll(" ", "-").toLowerCase();
+const titleId = computed(() => `dish-title-${props.dish.id}`);
 
-    return `${escapedTitle}-${dish.id}`;
-};
+function printPdf(d: AppDish) {
+  // TODO: сформировать/скачать PDF для блюда d
+  console.log("print PDF for", d.dislayName);
+}
+
+function openInstruction(d: AppDish) {
+  // TODO: открыть инструкцию/видео для блюда d
+  console.log("open instruction for", d.dislayName);
+}
 </script>
 
 <template>
-    <section class="bg-card rounded-lg px-4 shadow-xs">
-        <div class="flex items-center justify-center p-3">
-            <h2 class="font-caveat text-4xl">
-                {{ dish.dislayName }}
-            </h2>
-        </div>
+  <article
+    class="bg-card rounded-lg px-4 pt-4 shadow-xs"
+    :aria-labelledby="titleId"
+  >
+    <slot
+      name="header"
+      :dish="dish"
+    />
 
-        <DishImgFigure :dish />
+    <DishImgFigure :dish />
 
-        <div class="flex py-2">
-            <p>{{ dish.description }}</p>
-        </div>
+    <div class="flex py-2">
+      <p>{{ dish.description }}</p>
+    </div>
 
-        <div class="flex gap-1">
-            <DishMacros
-                :dish-title="dish.dislayName"
-                :macronutrients="dish.macronutrients"
-            />
-        </div>
+    <div class="flex gap-1">
+      <DishMacros
+        :dish-title="dish.dislayName"
+        :macronutrients="dish.macronutrients"
+      />
+    </div>
 
-        <DishIngridients :ingridients="dish.ingridients" />
+    <DishIngridients :ingridients="dish.ingridients" />
 
-        <div class="flex items-center justify-center p-4">
-            <NuxtLink
-                :to="createLink(dish)"
-                class="border-border rounded-lg border p-2"
-            >
-                Перейти до приготування
-            </NuxtLink>
-        </div>
+    <slot :dish="dish" />
 
-        <div class="flex gap-2 py-4">
-            <button
-                type="button"
-                class="border-border inline-flex items-center justify-center gap-2 rounded-md border px-4 py-2"
-            >
-                <Icon
-                    name="lucide:printer"
-                    class=""
-                    size="16"
-                />
-                <span>PDF</span>
-            </button>
-            <button
-                type="button"
-                class="border-border inline-flex items-center justify-center gap-2 rounded-md border px-4 py-2"
-            >
-                <Icon
-                    name="lucide:clipboard-list"
-                    class=""
-                    size="16"
-                />
-                <span>Інструкція</span>
-            </button>
-        </div>
-    </section>
+    <!-- 
+    <slot
+      name="footer"
+      :dish="dish"
+    /> -->
+
+    <DishActions
+      :dish="dish"
+      @pdf="printPdf"
+      @instruction="openInstruction"
+    />
+  </article>
 </template>
