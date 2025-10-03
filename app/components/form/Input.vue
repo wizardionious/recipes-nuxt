@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { InputHTMLAttributes } from 'vue';
+import type { InputHTMLAttributes } from "vue";
 
 const model = defineModel<string | number>();
 
@@ -16,13 +16,10 @@ const props = withDefaults(
   },
 );
 
-const id = inject("input-id") as string;
-
-onMounted(() => {
-  if (!id || id.trim() === "") {
-    console.error("No id provided for input");
-  }
-});
+// берём то, что дали сверху, или генерим своё
+const providedId = inject<string | null>("input-id", null);
+const generatedId = useId();
+const id = computed(() => providedId || generatedId); // ✅ всегда будет id
 </script>
 
 <template>
