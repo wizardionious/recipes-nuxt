@@ -1,23 +1,30 @@
 <script lang="ts" setup>
-const ingridients = ref([
-  {
-    text: "",
-  },
-]);
+const ingridients = ref<(DishIngridient & { id: string })[]>([]);
+
+const addIngredient = () => {
+  ingridients.value.push({
+    id: crypto.randomUUID(),
+    title: "",
+    amount: 0,
+    units: "g",
+  });
+};
 </script>
 
 <template>
   <main class="flex flex-1 flex-col py-4">
+    <PageHeading text="Додаваня нової страви" />
+
     <div class="p-4">
       <Form>
-        <Formfield label="Назва страви">
+        <FormField label="Назва страви">
           <FormInput
             type="text"
             name="title"
             placeholder="Чахохбілі"
             required
           />
-        </Formfield>
+        </FormField>
         <FormField label="Опис страви">
           <FormTextarea
             type="text"
@@ -25,24 +32,18 @@ const ingridients = ref([
             placeholder="Грузинское блюдо..."
             required
           />
-          <div class="flex flex-col gap-2">
-            <FormInput
-              v-for="(value, index) in ingridients"
-              :key="value.text"
-              v-model="value.text"
-              :name="'Ingridient' + index"
-              placeholder="Введіть інгрідієнт"
-            />
-
-            <button
-              type="button"
-              class="bg-accent-background inline-flex items-center justify-center rounded-2xl p-2"
-              @click="() => ingridients.push({ text: '' })"
-            >
-              Add ingridient
-            </button>
-          </div>
         </FormField>
+        <div class="flex flex-col gap-2">
+          <IngridientRow v-model="ingridients[0]" />
+
+          <button
+            type="button"
+            class="bg-accent-background inline-flex items-center justify-center rounded-2xl p-2"
+            @click="addIngredient"
+          >
+            Add ingridient
+          </button>
+        </div>
       </Form>
     </div>
   </main>

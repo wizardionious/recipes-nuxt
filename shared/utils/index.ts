@@ -1,4 +1,3 @@
-// shared/utils/index.ts
 import type { AppDish } from "../types/dish";
 
 /** Простая транслитерация кириллицы (uk/ru) → ASCII (нижний регистр) */
