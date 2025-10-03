@@ -30,11 +30,7 @@ const dishes = computed(() => data.value ?? []);
     </div>
 
     <template v-else-if="dishes">
-      <div
-        class="bg-card mx-4 flex items-center justify-center rounded-xl p-2 shadow-xs"
-      >
-        <h1 class="font-caveat text-4xl">Найсмачніші страви</h1>
-      </div>
+      <PageHeading text="Найсмачніші страви" />
 
       <div class="grid flex-1 grid-cols-1 gap-4 px-4">
         <DishCard
@@ -43,7 +39,9 @@ const dishes = computed(() => data.value ?? []);
           :dish
         >
           <template #header>
-            <h2>{{ dish.dislayName }}</h2>
+            <h2 class="font-caveat pb-2 text-center text-4xl">
+              {{ dish.dislayName }}
+            </h2>
           </template>
 
           <template #default>

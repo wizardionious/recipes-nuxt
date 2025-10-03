@@ -105,11 +105,7 @@ useSeoMeta({
     </div>
 
     <template v-else-if="dish">
-      <div
-        class="bg-card mx-4 flex items-center justify-center rounded-xl p-2 shadow-xs"
-      >
-        <h1 class="font-caveat text-4xl">{{ dish.dislayName }}</h1>
-      </div>
+      <PageHeading :text="dish.dislayName" />
 
       <div class="px-4">
         <DishCard :dish>
