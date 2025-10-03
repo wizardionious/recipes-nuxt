@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import type { InputHTMLAttributes } from 'vue';
+
 const model = defineModel<string | number>();
 
 const props = withDefaults(
