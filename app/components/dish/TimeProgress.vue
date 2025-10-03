@@ -60,9 +60,6 @@ const finishTimeText = computed(() =>
   ),
 );
 
-// доступное имя прогресса
-const headingId = "time-progress-heading";
-
 // a11y-значение «X із Y» для прогрессбара
 const valueText = computed(
   () =>
@@ -71,28 +68,21 @@ const valueText = computed(
 </script>
 
 <template>
-  <div class="flex items-center gap-4 p-2">
-    <span class="text-sm whitespace-nowrap">
-      {{ formatDuration(spentSeconds) }} / {{ formatDuration(totalSeconds) }}
-    </span>
+  <div class="flex flex-col gap-2 p-2">
+    <div class="flex items-center gap-4">
+      <span class="text-sm whitespace-nowrap">
+        {{ formatDuration(spentSeconds) }} / {{ formatDuration(totalSeconds) }}
+      </span>
 
-    <!-- доступное имя для прогресса времени -->
-    <h2
-      :id="headingId"
-      class="sr-only"
-    >
-      Прогрес за часом
-    </h2>
-
-    <ProgressBar
-      :min="0"
-      :max="totalSeconds"
-      :now="spentSeconds"
-      :valuetext="valueText"
-      :labelledby="headingId"
-      thumb-color="bg-emerald-500"
-      label="Прогрес за часом"
-    />
+      <ProgressBar
+        :min="0"
+        :max="totalSeconds"
+        :now="spentSeconds"
+        :valuetext="valueText"
+        thumb-color="bg-emerald-500"
+        label="Прогрес за часом"
+      />
+    </div>
 
     <!-- подписи справа в выбранном режиме -->
     <div
