@@ -14,7 +14,7 @@ const dishes = computed(() => data.value ?? []);
 </script>
 
 <template>
-  <main class="flex flex-1 flex-col py-4">
+  <main class="flex flex-1 flex-col space-y-4 py-4">
     <div
       v-if="status === 'pending'"
       class="flex flex-1 items-center justify-center"
@@ -36,7 +36,7 @@ const dishes = computed(() => data.value ?? []);
         <h1 class="font-caveat text-4xl">Найсмачніші страви</h1>
       </div>
 
-      <div class="grid flex-1 grid-cols-1 gap-4 p-4">
+      <div class="grid flex-1 grid-cols-1 gap-4 px-4">
         <DishCard
           v-for="dish in dishes"
           :key="dish.id"
