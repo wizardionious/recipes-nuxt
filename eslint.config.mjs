@@ -1,5 +1,6 @@
 // @ts-check
 import withNuxt from "./.nuxt/eslint.config.mjs";
+import vueJsAccessibility from "eslint-plugin-vuejs-accessibility";
 
 export default withNuxt({
   rules: {
