@@ -16,7 +16,9 @@ const props = withDefaults(
   },
 );
 
-const id = inject("input-id") as string;
+const providedId = inject<string | null>("input-id", null);
+const generatedId = useId();
+const id = computed(() => providedId || generatedId);
 </script>
 
 <template>
