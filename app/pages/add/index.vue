@@ -1,13 +1,27 @@
 <script lang="ts" setup>
-const ingridients = ref<(DishIngridient & { id: string })[]>([]);
+let lastID = 1;
+const ingridients = ref<(DishIngridient & { id: string })[]>([
+  {
+    id: String(lastID),
+    title: "",
+    amount: 0,
+    units: "g",
+  },
+]);
 
 const addIngredient = () => {
   ingridients.value.push({
-    id: crypto.randomUUID(),
+    id: String(++lastID),
     title: "",
     amount: 0,
     units: "g",
   });
+};
+
+const deleteIngredient = (index: number) => {
+  if (ingridients.value.length > 1) {
+    ingridients.value.splice(index, 1);
+  }
 };
 </script>
 
@@ -34,7 +48,14 @@ const addIngredient = () => {
           />
         </FormField>
         <div class="flex flex-col gap-2">
-          <IngridientRow v-model="ingridients[0]" />
+          <ul class="space-y-2">
+            <IngridientRow
+              v-for="(ingridient, idx) in ingridients"
+              :key="ingridient.id"
+              v-model="ingridients[idx]!"
+              @delete="deleteIngredient(idx)"
+            />
+          </ul>
 
           <button
             type="button"
