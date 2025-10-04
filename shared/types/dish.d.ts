@@ -34,7 +34,7 @@ export type AppDish = {
     src: string;
   };
   title: string;
-  dislayName: string;
+  displayName: string;
   description: string;
   macronutrients: Macronutrient[];
   ingridients: DishIngridient[];

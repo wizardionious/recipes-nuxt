@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import gsap from "gsap";
 
-const props = defineProps<{
+const { ingridients } = defineProps<{
   ingridients: DishIngridient[];
 }>();
 
@@ -73,9 +73,12 @@ function toggle() {
     ref="detailsEl"
     :open="isOpen"
   >
+    <!-- eslint-disable-next-line vuejs-accessibility/no-static-element-interactions -->
     <summary
       class="flex cursor-pointer items-center gap-2 py-4 font-medium"
       @click.prevent="toggle"
+      @keydown.enter="toggle"
+      @keydown.space="toggle"
     >
       <Icon
         name="lucide:arrow-right"
