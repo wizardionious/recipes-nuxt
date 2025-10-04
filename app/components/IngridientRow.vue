@@ -1,9 +1,5 @@
 <script lang="ts" setup>
-type Ingridient = DishIngridient & { id: string };
-
-const model = defineModel<Ingridient>({ required: true });
-
-defineEmits<{ delete: [] }>();
+const model = defineModel<DishIngridient>({ required: true });
 
 type UnitRule = { units: IngridientUnits; lock: boolean };
 
@@ -13,6 +9,8 @@ const UNIT_RULES: Readonly<Record<string, UnitRule>> = {
 
   мясо: { units: "kg", lock: true },
 } as const;
+
+const ALL_UNITS = ["g", "kg", "ml", "l", "pcs"] as const;
 
 const rule = computed(() => UNIT_RULES[norm(model.value?.title || "")] || null);
 
@@ -25,20 +23,22 @@ watch(rule, (newRule) => {
 </script>
 
 <template>
-  <li class="grid grid-cols-[1fr_auto_auto] items-center gap-2">
+  <div class="grid grid-cols-6 items-center gap-2">
     <FormInput
       v-model="model.title"
       placeholder="Назва інгредієнта"
       name="title"
-      class="col-span-5"
+      class="col-span-4"
     />
     <FormInput
       v-model="model.amount"
-      type="number"
-      min="0"
-      placeholder="0"
+      :type="hasUnits(model) ? 'number' : 'text'"
+      :min="hasUnits(model) ? '0' : undefined"
+      :placeholder="hasUnits(model) ? '0' : 'за смаком'"
       name="amount"
+      :class="hasUnits(model) ? 'col-span-1' : 'col-span-2'"
     />
+    <!--  eslint-disable-next-line -->
     <select
       v-if="hasUnits(model)"
       v-model="model.units"
@@ -52,16 +52,5 @@ watch(rule, (newRule) => {
         {{ unit }}
       </option>
     </select>
-    <button
-      type="button"
-      class="inline-flex h-full items-center justify-center rounded-lg text-red-500 transition-colors hover:bg-red-50 hover:text-red-700 active:bg-red-100"
-      title="Видалити інгредієнт"
-      @click="$emit('delete')"
-    >
-      <Icon
-        name="lucide:trash-2"
-        size="20"
-      />
-    </button>
-  </li>
+  </div>
 </template>
