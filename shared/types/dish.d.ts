@@ -4,7 +4,7 @@ export type Macronutrient = {
 };
 
 const ALL_UNITS = ["g", "kg", "ml", "l", "pcs"] as const;
-type IngridientUnits = (typeof ALL_UNITS)[number];
+export type IngridientUnits = (typeof ALL_UNITS)[number];
 
 export type DishIngridient =
   | {
