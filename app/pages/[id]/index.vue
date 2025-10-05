@@ -89,7 +89,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <main class="flex flex-1 flex-col space-y-4 py-4">
+  <main class="flex flex-1 flex-col space-y-4 p-4">
     <div
       v-if="status === 'pending'"
       class="flex flex-1 items-center justify-center"
@@ -107,8 +107,7 @@ useSeoMeta({
     <template v-else-if="dish">
       <PageHeading :text="dish.dislayName" />
 
-      <div class="px-4">
-        <DishCard :dish>
+         <DishCard :dish>
           <hr class="border-border" />
           <div class="flex flex-col py-2">
             <DishStepsProgress :steps />
@@ -119,7 +118,6 @@ useSeoMeta({
             <DishSteps v-model:steps="steps" />
           </div>
         </DishCard>
-      </div>
     </template>
 
     <div
