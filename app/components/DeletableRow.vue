@@ -17,7 +17,7 @@ const props = defineProps<{
 
     <button
       type="button"
-      class="trasnition-colors inline-flex h-full items-center justify-center rounded-lg text-red-500 hover:bg-red-50 hover:text-red-700 active:bg-red-100"
+      class="trasition-colors inline-flex h-full items-center justify-center rounded-lg text-red-500 hover:bg-red-50 hover:text-red-700 active:bg-red-100"
       title="Видалити інгредієнт"
       @click="$emit('delete')"
     >
