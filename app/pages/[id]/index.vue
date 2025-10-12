@@ -107,17 +107,17 @@ useSeoMeta({
     <template v-else-if="dish">
       <PageHeading :text="dish.displayName" />
 
-         <DishCard :dish>
-          <hr class="border-border" />
-          <div class="flex flex-col py-2">
-            <DishStepsProgress :steps />
-            <DishTimeProgress
-              :steps
-              label-mode="both"
-            />
-            <DishSteps v-model:steps="steps" />
-          </div>
-        </DishCard>
+      <DishCard :dish>
+        <hr class="border-border" />
+        <div class="flex flex-col py-2">
+          <DishStepsProgress :steps />
+          <DishTimeProgress
+            :steps
+            label-mode="both"
+          />
+          <DishSteps v-model:steps="steps" />
+        </div>
+      </DishCard>
     </template>
 
     <div
